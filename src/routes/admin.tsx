@@ -26,7 +26,7 @@ function AdminRoute() {
     const savedWhatsapp = localStorage.getItem("whatsappNumber");
     
     if (savedTelegram) setTelegramLink(savedTelegram);
-    else setTelegramLink("https://t.me/sejalrelaxspa"); // Default fallback
+    else setTelegramLink("https://t.me/SEJAL_REDDY_02"); // Default fallback
     
     if (savedWhatsapp) setWhatsappNumber(savedWhatsapp);
     else setWhatsappNumber("+1 (555) 018 · 2240"); // Default fallback
