@@ -9,19 +9,35 @@ export const Route = createFileRoute("/login")({
   component: LoginRoute,
 });
 
+import { supabase } from "@/lib/supabase";
+
 function LoginRoute() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "sejalmassagespa@gmail.com" && password === "Sejal@admin") {
-      localStorage.setItem("isAdminAuthenticated", "true");
-      navigate({ to: "/admin" });
-    } else {
-      setError("Invalid email or password");
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (authError) throw authError;
+
+      if (data.user) {
+        navigate({ to: "/admin" });
+      }
+    } catch (err: any) {
+      setError(err.message || "Invalid email or password");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,8 +81,8 @@ function LoginRoute() {
             )}
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-gold transition">
-              Login
+            <Button type="submit" disabled={isLoading} className="w-full bg-primary text-primary-foreground hover:bg-gold transition">
+              {isLoading ? "Logging in..." : "Login"}
             </Button>
           </CardFooter>
         </form>

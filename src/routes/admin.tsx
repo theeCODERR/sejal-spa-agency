@@ -9,39 +9,67 @@ export const Route = createFileRoute("/admin")({
   component: AdminRoute,
 });
 
+import { supabase } from "@/lib/supabase";
+
 function AdminRoute() {
   const navigate = useNavigate();
   const [telegramLink, setTelegramLink] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [isSaved, setIsSaved] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAdminAuthenticated");
-    if (isAuthenticated !== "true") {
-      navigate({ to: "/login", replace: true });
-    }
+    const checkAuthAndLoadData = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        navigate({ to: "/login", replace: true });
+        return;
+      }
 
-    // Load existing settings
-    const savedTelegram = localStorage.getItem("telegramLink");
-    const savedWhatsapp = localStorage.getItem("whatsappNumber");
+      // Load existing settings
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('*')
+        .single();
+        
+      if (data) {
+        setTelegramLink(data.telegram_link || "https://t.me/SEJAL_REDDY_02");
+        setWhatsappNumber(data.whatsapp_number || "+1 (555) 018 · 2240");
+      } else {
+        setTelegramLink("https://t.me/SEJAL_REDDY_02");
+        setWhatsappNumber("+1 (555) 018 · 2240");
+      }
+      setIsLoading(false);
+    };
     
-    if (savedTelegram) setTelegramLink(savedTelegram);
-    else setTelegramLink("https://t.me/SEJAL_REDDY_02"); // Default fallback
-    
-    if (savedWhatsapp) setWhatsappNumber(savedWhatsapp);
-    else setWhatsappNumber("+1 (555) 018 · 2240"); // Default fallback
+    checkAuthAndLoadData();
   }, [navigate]);
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("telegramLink", telegramLink);
-    localStorage.setItem("whatsappNumber", whatsappNumber);
-    setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 3000);
+    setIsSaved(false);
+    
+    const { error } = await supabase
+      .from('site_settings')
+      .update({ telegram_link: telegramLink, whatsapp_number: whatsappNumber })
+      .eq('id', 1);
+      
+    if (!error) {
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    } else {
+      // Create if it doesn't exist
+      await supabase.from('site_settings').insert([
+        { id: 1, telegram_link: telegramLink, whatsapp_number: whatsappNumber }
+      ]);
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAdminAuthenticated");
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     navigate({ to: "/login", replace: true });
   };
 
