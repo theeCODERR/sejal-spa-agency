@@ -31,7 +31,7 @@ const TelegramIcon = ({ className }: { className?: string }) => (
 );
 
 function Landing() {
-  const [telegramLink, setTelegramLink] = useState("https://t.me/+rgkEHNogLxVlNTc1");
+  const [telegramLink, setTelegramLink] = useState("https://t.me/sejalrelaxspa");
   const [whatsappNumber, setWhatsappNumber] = useState("");
 
   useEffect(() => {
