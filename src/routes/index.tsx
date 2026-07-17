@@ -47,7 +47,8 @@ function Landing() {
         const { data, error } = await supabase
           .from('site_settings')
           .select('*')
-          .single();
+          .limit(1)
+          .maybeSingle();
           
         if (data) {
           if (data.telegram_link) setTelegramLink(data.telegram_link);

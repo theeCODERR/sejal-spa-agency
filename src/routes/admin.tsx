@@ -31,7 +31,8 @@ function AdminRoute() {
       const { data, error } = await supabase
         .from('site_settings')
         .select('*')
-        .single();
+        .limit(1)
+        .maybeSingle();
         
       if (data) {
         setTelegramLink(data.telegram_link || "https://t.me/SEJAL_REDDY_02");
