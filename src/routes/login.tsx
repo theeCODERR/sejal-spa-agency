@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   component: LoginRoute,
@@ -43,6 +44,12 @@ function LoginRoute() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4 relative">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">
+        <Button variant="ghost" onClick={() => navigate({ to: "/" })} className="text-muted-foreground hover:text-primary transition">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Site
+        </Button>
+      </div>
       <div className="absolute inset-0 bg-radial-glow opacity-50" />
       <Card className="w-full max-w-md relative z-10 border-border bg-card/60 backdrop-blur-xl">
         <CardHeader className="space-y-1">
