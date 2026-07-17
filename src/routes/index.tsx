@@ -71,14 +71,18 @@ function Landing() {
             <a href="#sanctuary" className="hover:text-primary transition">Sanctuary</a>
             <a href="#book" className="hover:text-primary transition">Contact</a>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <a href={telegramLink} target="_blank" rel="noreferrer" className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_15px_-5px_#0088cc]" aria-label="Telegram Contact">
+              <TelegramIcon className="w-5 h-5" />
+            </a>
             {whatsappNumber && (
               <a href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-2 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 px-4 py-2 text-sm font-medium text-[#25D366] hover:bg-[#25D366] hover:text-white transition">
                 <WhatsappIcon className="w-4 h-4" />
-                <span>{whatsappNumber}</span>
+                <span className="hidden lg:inline">{whatsappNumber}</span>
               </a>
             )}
-            <a href="#book" className="rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:bg-gold transition shadow-[0_0_20px_-5px_var(--gold)]">Book Now</a>
+            <a href="#book" className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-gold transition shadow-[0_0_20px_-5px_var(--gold)]">Book Now</a>
+            <a href="/login" className="hidden sm:block rounded-full border border-primary/40 px-4 py-2 text-sm text-primary hover:bg-primary hover:text-primary-foreground transition">Login</a>
           </div>
         </div>
       </header>
@@ -200,9 +204,16 @@ function Landing() {
       </section>
 
       <footer className="border-t border-border py-10 text-center text-xs text-muted-foreground relative flex flex-col items-center">
-        <a href={telegramLink} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition mb-6 shadow-[0_0_20px_-5px_#0088cc]" aria-label="Telegram Contact">
-          <TelegramIcon className="w-7 h-7" />
-        </a>
+        <div className="flex gap-6 mb-6">
+          <a href={telegramLink} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_20px_-5px_#0088cc]" aria-label="Telegram Contact">
+            <TelegramIcon className="w-7 h-7" />
+          </a>
+          {whatsappNumber && (
+            <a href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#25D366]/80 text-white transition shadow-[0_0_20px_-5px_#25D366]" aria-label="WhatsApp Contact">
+              <WhatsappIcon className="w-7 h-7" />
+            </a>
+          )}
+        </div>
         <p className="font-display text-lg text-gold-gradient mb-2">Sejal Spa Agency</p>
         <p>© {new Date().getFullYear()} Sejal Genuine Indian Spa Agency · All bookings by appointment</p>
         <a href="/login" className="absolute right-6 bottom-10 opacity-20 hover:opacity-100 transition" aria-label="Admin Login">Admin</a>
