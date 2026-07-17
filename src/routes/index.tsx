@@ -71,17 +71,17 @@ function Landing() {
             <a href="#sanctuary" className="hover:text-primary transition">Sanctuary</a>
             <a href="#book" className="hover:text-primary transition">Contact</a>
           </nav>
-          <div className="flex items-center gap-3">
-            <a href={telegramLink} target="_blank" rel="noreferrer" className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_15px_-5px_#0088cc]" aria-label="Telegram Contact">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a href={telegramLink} target="_blank" rel="noreferrer" className="flex items-center justify-center w-9 h-9 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_15px_-5px_#0088cc]" aria-label="Telegram Contact">
               <TelegramIcon className="w-5 h-5" />
             </a>
             {whatsappNumber && (
-              <a href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-2 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 px-4 py-2 text-sm font-medium text-[#25D366] hover:bg-[#25D366] hover:text-white transition">
-                <WhatsappIcon className="w-4 h-4" />
-                <span className="hidden lg:inline">{whatsappNumber}</span>
+              <a href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="flex items-center justify-center w-9 h-9 md:w-auto md:h-auto md:px-4 md:py-2 md:gap-2 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition">
+                <WhatsappIcon className="w-5 h-5 md:w-4 md:h-4" />
+                <span className="hidden md:inline text-sm font-medium">{whatsappNumber}</span>
               </a>
             )}
-            <a href="#book" className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-gold transition shadow-[0_0_20px_-5px_var(--gold)]">Book Now</a>
+            <a href="#book" className="rounded-full bg-primary px-4 sm:px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-gold transition shadow-[0_0_20px_-5px_var(--gold)]">Book</a>
             <a href="/login" className="hidden sm:block rounded-full border border-primary/40 px-4 py-2 text-sm text-primary hover:bg-primary hover:text-primary-foreground transition">Login</a>
           </div>
         </div>
