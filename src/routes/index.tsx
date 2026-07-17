@@ -39,7 +39,7 @@ const WhatsappIcon = ({ className }: { className?: string }) => (
 
 function Landing() {
   const [telegramLink, setTelegramLink] = useState("https://t.me/SEJAL_REDDY_02");
-  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState("919876543210");
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -73,7 +73,7 @@ function Landing() {
             <a href={telegramLink} target="_blank" rel="noreferrer" className="flex items-center justify-center w-9 h-9 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_15px_-5px_#0088cc]" aria-label="Telegram Contact">
               <TelegramIcon className="w-5 h-5" />
             </a>
-            <a href={`https://api.whatsapp.com/send?phone=${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#25D366]/80 text-white transition shadow-[0_0_15px_-5px_#25D366]" aria-label="WhatsApp Contact">
+            <a href={whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}` : '#'} target="_blank" rel="noreferrer" className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#25D366]/80 text-white transition shadow-[0_0_15px_-5px_#25D366]" aria-label="WhatsApp Contact">
               <WhatsappIcon className="w-5 h-5" />
             </a>
             <a href="#book" className="rounded-full bg-primary px-4 sm:px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-gold transition shadow-[0_0_20px_-5px_var(--gold)]">Book</a>
@@ -203,7 +203,7 @@ function Landing() {
           <a href={telegramLink} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0088cc] hover:bg-[#0088cc]/80 text-white transition shadow-[0_0_20px_-5px_#0088cc]" aria-label="Telegram Contact">
             <TelegramIcon className="w-7 h-7" />
           </a>
-          <a href={`https://api.whatsapp.com/send?phone=${whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#25D366]/80 text-white transition shadow-[0_0_20px_-5px_#25D366]" aria-label="WhatsApp Contact">
+          <a href={whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}` : '#'} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#25D366]/80 text-white transition shadow-[0_0_20px_-5px_#25D366]" aria-label="WhatsApp Contact">
             <WhatsappIcon className="w-7 h-7" />
           </a>
         </div>
