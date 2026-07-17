@@ -65,10 +65,8 @@ function Landing() {
       <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-background/60 border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <a href="#" className="font-display text-2xl tracking-wide text-gold-gradient">Sejal Spa Agency</a>
-          <nav className="hidden md:flex gap-10 text-sm text-muted-foreground">
-            <a href="#rituals" className="hover:text-primary transition">Rituals</a>
+          <nav className="hidden md:flex gap-6 text-sm text-muted-foreground">
             <a href="#services" className="hover:text-primary transition">Services</a>
-            <a href="#sanctuary" className="hover:text-primary transition">Sanctuary</a>
             <a href="#book" className="hover:text-primary transition">Contact</a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
