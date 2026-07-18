@@ -1,0 +1,6 @@
+[build]
+  command = "NITRO_PRESET=netlify npm run build"
+  publish = ".netlify/public"
+
+[functions]
+  directory = ".netlify/functions-internal"
